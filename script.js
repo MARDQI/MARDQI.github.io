@@ -1,3 +1,10 @@
+// ===== Configuration Constants =====
+const CONFIG = {
+    CONTACT_EMAIL: 'contact@codespacesweb.me',
+    CURSOR_TRAIL_FREQUENCY: 0.9,
+    ANIMATION_DELAY_INCREMENT: 0.05
+};
+
 // ===== Navigation Functionality =====
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
@@ -116,7 +123,7 @@ contactForm.addEventListener('submit', (e) => {
     };
     
     // Create mailto link
-    const mailtoLink = `mailto:contact@codespacesweb.me?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
         `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
     )}`;
     
@@ -283,7 +290,7 @@ window.addEventListener('load', () => {
 // ===== Cursor Trail Effect (Optional Enhancement) =====
 document.addEventListener('mousemove', (e) => {
     // Create subtle cursor trail
-    if (Math.random() > 0.9) { // Only create occasionally to avoid performance issues
+    if (Math.random() > CONFIG.CURSOR_TRAIL_FREQUENCY) { // Only create occasionally to avoid performance issues
         const trail = document.createElement('div');
         trail.className = 'cursor-trail';
         trail.style.left = e.clientX + 'px';
@@ -345,7 +352,7 @@ const skillObserver = new IntersectionObserver((entries) => {
 
 skillItems.forEach((item, index) => {
     item.style.opacity = '0';
-    item.style.animationDelay = `${index * 0.05}s`;
+    item.style.animationDelay = `${index * CONFIG.ANIMATION_DELAY_INCREMENT}s`;
     skillObserver.observe(item);
 });
 
